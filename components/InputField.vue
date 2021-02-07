@@ -27,3 +27,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.input-field {
+  font-size: 2rem;
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 10rem;
+}
+</style>
