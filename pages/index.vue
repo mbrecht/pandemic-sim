@@ -15,6 +15,7 @@ export default {};
   flex-direction: column;
   align-items: center;
   font-family: "Segoe UI";
+  height: 100vh;
 }
 
 .title {

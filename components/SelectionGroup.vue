@@ -4,3 +4,11 @@
     <RadioButton label="Set immune points" name="selection-group" />
   </div>
 </template>
+
+<style scoped>
+.selection-group {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+</style>
