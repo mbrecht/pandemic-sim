@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick">
+  <button class="btn" @click="handleClick">
     {{ content }}
   </button>
 </template>
@@ -15,3 +15,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.btn {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+</style>
