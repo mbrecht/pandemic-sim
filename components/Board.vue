@@ -1,12 +1,7 @@
 <template>
   <table class="table">
     <tr v-for="(row, x) of board.rows" :key="x" class="row">
-      <th
-        v-for="(tile, y) of row"
-        v-bind:class="tile.status"
-        :key="y"
-        class="tile"
-      ></th>
+      <th v-for="(tile, y) of row" :key="y" :class="'tile ' + tile.status"></th>
     </tr>
   </table>
 </template>
@@ -28,5 +23,13 @@ export default {
 
 .tile {
   border: 1px solid black;
+}
+
+.infected {
+  background-color: red;
+}
+
+.immune {
+  background-color: green;
 }
 </style>
