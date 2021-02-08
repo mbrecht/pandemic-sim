@@ -1,14 +1,45 @@
 <template>
   <div id="game">
-    <SelectionGroup />
-    <Board v-bind:board="board" />
-    <Button content="Simulate Pandemic" class="sim-btn" />
+    <SelectionGroup v-on:on-change="changeSelection" />
+    <Board
+      v-bind:board="board"
+      v-bind:selection="selection"
+      v-on:set-tile="setTile"
+      :key="updateKey"
+    />
+    <Button
+      content="Simulate Pandemic"
+      class="sim-btn"
+      v-on:on-click="simulate"
+    />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["board"]
+  props: ["board", "numInfected", "status"],
+  data() {
+    return {
+      selection: "healthy",
+      updateKey: 0
+    };
+  },
+  methods: {
+    changeSelection(value) {
+      this.selection = value;
+    },
+
+    setTile(data) {
+      if (this.status === "idle") {
+        this.$emit("set-tile", data);
+        this.updateKey += 1;
+      }
+    },
+
+    simulate() {
+      if (this.status === "idle") this.$emit("simulate", "");
+    }
+  }
 };
 </script>
 

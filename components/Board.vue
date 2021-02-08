@@ -1,18 +1,30 @@
 <template>
   <table class="table">
     <tr v-for="(row, x) of board.rows" :key="x" class="row">
-      <th v-for="(tile, y) of row" :key="y" :class="'tile ' + tile.status"></th>
+      <Tile
+        v-for="(tile, y) of row"
+        :key="tile.id"
+        :status="tile.status"
+        :selection="selection"
+        :pos="{ x, y }"
+        v-on:set-tile="setTile"
+      />
     </tr>
   </table>
 </template>
 
 <script>
 export default {
-  props: ["board"]
+  props: ["board", "selection"],
+  methods: {
+    setTile(data) {
+      this.$emit("set-tile", data);
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .table {
   width: 100%;
   height: 100%;

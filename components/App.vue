@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     <InputGroup v-on:on-click="createBoard" />
-    <Game v-if="isReady" class="game" v-bind:board="board" />
+    <Game
+      v-if="isReady"
+      class="game"
+      v-bind:board="board"
+      v-bind:status="status"
+      v-on:set-tile="setTile"
+      v-on:simulate="simulate"
+      :key="round"
+    />
   </div>
 </template>
 
@@ -12,15 +20,33 @@ export default {
   data() {
     return {
       board: undefined,
-      isReady: false
+      isReady: false,
+      round: 0,
+      status: "idle"
     };
   },
   methods: {
     createBoard({ width, height }) {
       const board = new Board(width, height);
-      console.log(board);
       this.board = board;
       this.isReady = true;
+    },
+
+    setTile({ x, y, status }) {
+      this.board.setTile(x, y, status);
+      this.$forceUpdate();
+    },
+
+    simulate() {
+      const numInfected = this.board.simRound(); // how many were infected this round
+      this.round += 1;
+
+      if (numInfected) {
+        this.status = "simulating";
+        setTimeout(this.simulate, 500);
+      } else {
+        this.status = "idle";
+      }
     }
   }
 };

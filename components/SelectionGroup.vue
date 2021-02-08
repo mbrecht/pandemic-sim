@@ -1,17 +1,25 @@
 <template>
   <div class="selection-group">
-    <RadioButton
-      label="Set initial infection point"
-      name="selection-group"
-      value="infected"
-      @change="handleChange"
-    />
-    <RadioButton
-      label="Set immune points"
-      name="selection-group"
-      value="immune"
-      @change="handleChange"
-    />
+    <p class="radio">
+      <input
+        class="radio-btn"
+        type="radio"
+        name="selection-group"
+        value="infected"
+        @change="handleChange"
+      />
+      Set initial infection point
+    </p>
+    <p class="radio">
+      <input
+        class="radio-btn"
+        type="radio"
+        name="selection-group"
+        value="immune"
+        @change="handleChange"
+      />
+      Set immune points
+    </p>
   </div>
 </template>
 
@@ -30,5 +38,18 @@ export default {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+}
+
+.radio {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 1rem;
+  font-size: 2rem;
+}
+
+.radio-btn {
+  width: 2rem;
+  height: 2rem;
 }
 </style>
