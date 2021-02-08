@@ -16,12 +16,17 @@ export default {
 #game {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 2rem 0;
 }
 
+#game * {
+  flex: 1 1 0px;
+}
+
 .sim-btn {
-  height: fit-content;
   margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
