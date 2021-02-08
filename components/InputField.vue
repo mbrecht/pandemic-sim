@@ -5,24 +5,19 @@
       type="number"
       name="input-field"
       v-model="value"
-      @change="handleChange"
       class="input"
+      @change="handleChange"
     />
   </p>
 </template>
 
 <script>
 export default {
-  name: "Input Field",
-  props: ["label"],
-  data() {
-    return {
-      value: ""
-    };
-  },
+  name: "InputField",
+  props: ["label", "value"],
   methods: {
-    handleChange() {
-      this.$emit("on-change", this.value);
+    handleChange(e) {
+      this.$emit("on-change", this.label, e.target.value);
     }
   }
 };

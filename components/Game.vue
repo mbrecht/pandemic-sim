@@ -1,10 +1,16 @@
 <template>
   <div id="game">
     <SelectionGroup />
-    <Board rows="5" cols="5" />
+    <Board v-bind:board="board" />
     <Button content="Simulate Pandemic" class="sim-btn" />
   </div>
 </template>
+
+<script>
+export default {
+  props: ["board"]
+};
+</script>
 
 <style scoped>
 #game {
