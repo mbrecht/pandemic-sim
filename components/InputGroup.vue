@@ -16,12 +16,20 @@
       label="width"
       v-on:on-change="updateInput"
     />
-    <Button content="Create Grid" v-on:on-click="handleClick" />
+    <Button content="Create Grid" :onClick="handleClick" />
   </div>
 </template>
 
 <script>
+import Button from "@/components/Button.vue";
+import InputField from "@/components/InputField.vue";
+
 export default {
+  name: "InputGroup",
+  components: {
+    InputField,
+    Button
+  },
   data() {
     return {
       width: "",

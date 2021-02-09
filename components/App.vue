@@ -15,9 +15,16 @@
 </template>
 
 <script>
-import Board from "../assets/Board";
+import GameBoard from "@/assets/GameBoard.js";
+import Game from "@/components/Game.vue";
+import InputGroup from "@/components/InputGroup.vue";
 
 export default {
+  name: "App",
+  components: {
+    Game,
+    InputGroup
+  },
   data() {
     return {
       board: undefined,
@@ -28,7 +35,7 @@ export default {
   },
   methods: {
     createBoard({ width, height }) {
-      this.board = new Board(height, width);
+      this.board = new GameBoard(height, width);
       this.isReady = true;
       this.round = 0;
     },

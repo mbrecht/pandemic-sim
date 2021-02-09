@@ -1,18 +1,18 @@
 <template>
-  <div id="game">
-    <SelectionGroup v-on:on-change="changeSelection" />
-    <Board
-      v-bind:board="board"
-      v-bind:selection="selection"
-      v-on:set-tile="setTile"
-      :key="updateKey"
-    />
-    <div class="sim-group">
-      <Button
-        content="Simulate Pandemic"
-        class="sim-btn"
-        v-on:on-click="simulate"
+  <div class="game">
+    <div class="game-section">
+      <SelectionGroup v-on:on-change="changeSelection" />
+    </div>
+    <div class="game-section">
+      <Board
+        v-bind:board="board"
+        v-bind:selection="selection"
+        v-bind:set-tile="setTile"
+        :key="updateKey"
       />
+    </div>
+    <div class="game-section sim-group">
+      <Button content="Simulate Pandemic" class="sim-btn" :onClick="simulate" />
       <p v-show="round > 0 || status === simulating" class="sim-day">
         Day {{ round }}
       </p>
@@ -21,14 +21,27 @@
 </template>
 
 <script>
+import Button from "@/components/Button.vue";
+import Board from "@/components/Board.vue";
+import SelectionGroup from "@/components/SelectionGroup.vue";
+
 export default {
+  name: "Game",
+  components: {
+    Button,
+    Board,
+    SelectionGroup
+  },
+
   props: ["board", "numInfected", "status", "round"],
+
   data() {
     return {
       selection: "healthy",
       updateKey: 0
     };
   },
+
   methods: {
     changeSelection(value) {
       this.selection = value;
@@ -49,14 +62,14 @@ export default {
 </script>
 
 <style scoped>
-#game {
+.game {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   margin: 2rem 0;
 }
 
-#game * {
+.game-section {
   flex: 1 1 0px;
 }
 
@@ -66,6 +79,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 2rem;
 }
 
 .sim-day {

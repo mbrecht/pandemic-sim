@@ -6,7 +6,14 @@
 </template>
 
 <script>
-export default {};
+import App from "@/components/App.vue";
+
+export default {
+  name: "page",
+  components: {
+    App
+  }
+};
 </script>
 
 <style>

@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: "SelectionGroup",
   methods: {
     handleChange(e) {
       this.$emit("on-change", e.target.value);
