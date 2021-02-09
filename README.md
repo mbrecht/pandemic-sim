@@ -2,7 +2,9 @@
 
 Pandemic Simulator is an app that allows you to create a 2 dimensional game board and simulate a pandemic. A selection group allows users to choose between setting tiles to immune or infected and the "Start Pandemic" button will show the user, turn-by-turn, how their pandemic unfolds.
 
-![Gif of pandemic simulator in action](/assets/pandemic-gif.gif)
+**Play the game [here](https://stupefied-bartik-0a297c.netlify.app/)**
+
+![Gif of pandemic simulator in action](/git_assets/pandemic-gif.gif)
 
 ## Build Setup
 
