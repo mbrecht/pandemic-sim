@@ -2,11 +2,10 @@ class Tile {
   constructor(x, y) {
     this.pos = { x, y };
     this.status = "healthy"; // 'healthy' || 'immune' || 'infected'
-    this.id = `(${x}, ${y})`; // quick and dirty way to make unique ids for vue keys
   }
 }
 
-class Board {
+class GameBoard {
   constructor(rows, cols) {
     this.dims = { rows, cols };
     // Creates 2D array
@@ -65,4 +64,4 @@ class Board {
   }
 }
 
-export default Board;
+export default GameBoard;

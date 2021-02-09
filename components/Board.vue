@@ -3,24 +3,25 @@
     <tr v-for="(row, x) of board.rows" :key="x" class="row">
       <Tile
         v-for="(tile, y) of row"
-        :key="tile.id"
         :status="tile.status"
-        :selection="selection"
         :pos="{ x, y }"
-        v-on:set-tile="setTile"
+        :selection="selection"
+        :setTile="setTile"
+        :key="y"
       />
     </tr>
   </table>
 </template>
 
 <script>
+import Tile from "@/components/Tile.vue";
+
 export default {
-  props: ["board", "selection"],
-  methods: {
-    setTile(data) {
-      this.$emit("set-tile", data);
-    }
-  }
+  name: "Board",
+  components: {
+    Tile
+  },
+  props: ["board", "selection", "setTile"]
 };
 </script>
 

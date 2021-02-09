@@ -1,28 +1,63 @@
 <template>
   <div class="input-group">
     <h3 class="name">Please enter your desired 2D Grid Size</h3>
-    <InputField label="height" v-on:on-change="updateInput" />
-    <InputField label="width" v-on:on-change="updateInput" />
-    <Button content="Create Grid" v-on:on-click="handleClick" />
+    <p class="error-msg" v-if="validationError">
+      Error: Values must be numbers greater than 0.
+    </p>
+    <InputField
+      type="number"
+      min="1"
+      label="height"
+      v-on:on-change="updateInput"
+    />
+    <InputField
+      type="number"
+      min="1"
+      label="width"
+      v-on:on-change="updateInput"
+    />
+    <Button content="Create Grid" :onClick="handleClick" />
   </div>
 </template>
 
 <script>
+import Button from "@/components/Button.vue";
+import InputField from "@/components/InputField.vue";
+
 export default {
+  name: "InputGroup",
+  components: {
+    InputField,
+    Button
+  },
   data() {
     return {
       width: "",
-      height: ""
+      height: "",
+      validationError: false
     };
   },
   methods: {
     handleClick() {
       const { width, height } = this;
-      console.log(this, width, height);
-      this.$emit("on-click", { width, height });
+
+      if (this.validate()) this.$emit("on-click", { width, height });
     },
+
     updateInput(prop, val) {
       this[prop] = val;
+    },
+
+    validate() {
+      const { width, height } = this;
+
+      if (width < 1 || height < 1) {
+        this.validationError = true;
+        return false;
+      } else {
+        this.validationError = false;
+        return true;
+      }
     }
   }
 };
@@ -39,5 +74,10 @@ export default {
 .name {
   font-size: 3rem;
   font-weight: normal;
+}
+
+.error-msg {
+  background-color: lightcoral;
+  padding: 1rem;
 }
 </style>

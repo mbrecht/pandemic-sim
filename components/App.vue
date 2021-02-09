@@ -6,17 +6,25 @@
       class="game"
       v-bind:board="board"
       v-bind:status="status"
+      v-bind:round="round"
       v-on:set-tile="setTile"
-      v-on:simulate="simulate"
+      v-on:simulate="startSimulation"
       :key="round"
     />
   </div>
 </template>
 
 <script>
-import Board from "../assets/Board";
+import GameBoard from "@/assets/GameBoard.js";
+import Game from "@/components/Game.vue";
+import InputGroup from "@/components/InputGroup.vue";
 
 export default {
+  name: "App",
+  components: {
+    Game,
+    InputGroup
+  },
   data() {
     return {
       board: undefined,
@@ -27,9 +35,9 @@ export default {
   },
   methods: {
     createBoard({ width, height }) {
-      const board = new Board(width, height);
-      this.board = board;
+      this.board = new GameBoard(height, width);
       this.isReady = true;
+      this.round = 0;
     },
 
     setTile({ x, y, status }) {
@@ -37,13 +45,20 @@ export default {
       this.$forceUpdate();
     },
 
-    simulate() {
-      const numInfected = this.board.simRound(); // how many were infected this round
-      this.round += 1;
+    startSimulation() {
+      // Reset game values to initial conditions
+      this.round = 0;
+      // Begin simulation
+      this.simulate();
+    },
 
-      if (numInfected) {
+    simulate() {
+      if (this.board.simRound()) {
         this.status = "simulating";
-        setTimeout(this.simulate, 500);
+        this.round += 1; // Increment to ensure game component renders
+
+        const delay = 500; // time between rounds in ms
+        setTimeout(this.simulate, delay);
       } else {
         this.status = "idle";
       }

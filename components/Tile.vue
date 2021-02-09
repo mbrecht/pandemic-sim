@@ -9,7 +9,8 @@
 
 <script>
 export default {
-  props: ["status", "pos", "selection"],
+  name: "Tile",
+  props: ["status", "pos", "selection", "setTile"],
   data() {
     const classList = ["tile", this.status];
     const className = classList.join(" ");
@@ -49,7 +50,7 @@ export default {
 
     toggleTile() {
       if (this.selection && this.selection !== "healthy") {
-        this.$emit("set-tile", { ...this.pos, status: this.selection });
+        this.setTile({ ...this.pos, status: this.selection });
       }
     }
   }

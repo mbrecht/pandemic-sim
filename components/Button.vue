@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="btn" @click="handleClick">
+    <button class="btn" @click="onClick">
       {{ content }}
     </button>
   </div>
@@ -8,7 +8,8 @@
 
 <script>
 export default {
-  props: ["content"],
+  name: "Button",
+  props: ["content", "onClick"],
   methods: {
     handleClick(e) {
       e.preventDefault();
