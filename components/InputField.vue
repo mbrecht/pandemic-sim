@@ -2,10 +2,12 @@
   <p class="input-field">
     {{ label }}
     <input
-      type="number"
       name="input-field"
-      v-model="value"
       class="input"
+      :type="type"
+      :min="min"
+      :max="max"
+      v-model="value"
       @change="handleChange"
     />
   </p>
@@ -14,7 +16,7 @@
 <script>
 export default {
   name: "InputField",
-  props: ["label", "value"],
+  props: ["label", "value", "type", "min", "max"],
   methods: {
     handleChange(e) {
       this.$emit("on-change", this.label, e.target.value);

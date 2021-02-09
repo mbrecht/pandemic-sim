@@ -30,6 +30,7 @@ export default {
     createBoard({ width, height }) {
       this.board = new Board(height, width);
       this.isReady = true;
+      this.round = 0;
     },
 
     setTile({ x, y, status }) {
