@@ -7,17 +7,22 @@
       v-on:set-tile="setTile"
       :key="updateKey"
     />
-    <Button
-      content="Simulate Pandemic"
-      class="sim-btn"
-      v-on:on-click="simulate"
-    />
+    <div class="sim-group">
+      <Button
+        content="Simulate Pandemic"
+        class="sim-btn"
+        v-on:on-click="simulate"
+      />
+      <p v-show="round > 0 || status === simulating" class="sim-day">
+        Day {{ round }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["board", "numInfected", "status"],
+  props: ["board", "numInfected", "status", "round"],
   data() {
     return {
       selection: "healthy",
@@ -55,9 +60,16 @@ export default {
   flex: 1 1 0px;
 }
 
-.sim-btn {
-  margin-top: 2rem;
+.sim-group {
+  height: 100%;
+
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sim-day {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 </style>
